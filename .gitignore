@@ -1,3 +1,5 @@
 nimcache/
 \#*
 src/server
+build
+*.exe
