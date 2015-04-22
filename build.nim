@@ -1,5 +1,7 @@
 import os
 
-discard execShellCmd("nim c src\\browser\\main.nim")
-discard execShellCmd("nim c src\\server.nim")
+var browser = "src" / "browser" / "main.nin"
+var server = "src" / "server.nim"
 
+discard execShellCmd("nim c " & browser)
+discard execShellCmd("nim c " & server)
