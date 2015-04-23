@@ -1,4 +1,4 @@
-import asynchttpserver, asyncdispatch, strtabs, browsers, cgi
+import asynchttpserver, asyncdispatch, strtabs, browsers, cgi, os
 
 var server = newAsyncHttpServer()
 proc cb(req: Request) {.async.} =
@@ -13,6 +13,14 @@ proc cb(req: Request) {.async.} =
     echo("[Warning] Incorrect query. Got: ", query)
 
 
+  var output = "HELLO"
+  case params["action"]
+  of "main":
+    echo "MAIN"
+    output = readFile("src" / "browser" / "index.html")
+
+
+
   if params.hasKey("action"):
     echo "GOOD"
   else:
@@ -21,7 +29,7 @@ proc cb(req: Request) {.async.} =
 #  for k,v in req.headers:
 #    echo k, " -> ", v
 
-  await req.respond(Http200, "Hello World")
+  await req.respond(Http200, output)
 
 asyncCheck server.serve(Port(8055), cb)
 
