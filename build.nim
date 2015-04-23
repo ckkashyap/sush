@@ -1,7 +1,7 @@
 import os
 
-var browser = "src" / "browser" / "main.nin"
+var browser = "src" / "browser" / "main.nim"
 var server = "src" / "server.nim"
 
-discard execShellCmd("nim c " & browser)
-discard execShellCmd("nim c " & server)
+discard execShellCmd("nim js -d:release " & browser)
+discard execShellCmd("nim c -d:release " & server)
